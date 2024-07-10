@@ -1,18 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
-Auth::routes();
+Route::get('/', function () {
+    return view('chat');
+});
 
-Route::get('/', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
-Route::post('messages', 'ChatsController@sendMessage');
+Route::post('/send-message', [MessageController::class, 'sendMessage']);
+Route::get('/get-messages', [MessageController::class, 'getMessages']);
